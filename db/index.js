@@ -31,6 +31,12 @@ class DB {
         return this.connection.query(queryString);
     };
     
+    idAndConcatName() {
+        const queryString = `select concat(first_name," ",last_name) as "full_name",id
+        from employees;`;
+        return this.connection.query(queryString);
+    }
+
     allRoles() {
         const queryString = `select role_id,title,salary,dept_name
         from roles
@@ -57,7 +63,16 @@ class DB {
         const queryString = `insert into roles (title,salary,dept_id) values ("${result.role}",${result.salary},${id});`;
         return this.connection.query(queryString);
     };
-
+    
+    addEmployee(result,role_id,manager_id) {
+        let queryString;
+        if (!manager_id) {
+            queryString = `insert into employees (first_name,last_name,role_id) values ("${result.first_name}","${result.last_name}",${role_id});`;
+        } else {
+            queryString = `insert into employees (first_name,last_name,role_id,manager_id) values ("${result.first_name}","${result.last_name}",${role_id},${manager_id});`;
+        }
+        return this.connection.query(queryString);
+    }
 };
 
 module.exports = DB;
