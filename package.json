@@ -7,7 +7,8 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
@@ -21,6 +22,7 @@
   },
   "homepage": "https://github.com/runescape11111/Employee-Tracker#readme",
   "dependencies": {
+    "console-table-printer": "^2.8.2",
     "inquirer": "^8.0.0",
     "mysql": "^2.18.1"
   }
