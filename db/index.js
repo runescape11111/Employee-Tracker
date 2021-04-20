@@ -72,6 +72,11 @@ class DB {
             queryString = `insert into employees (first_name,last_name,role_id,manager_id) values ("${result.first_name}","${result.last_name}",${role_id},${manager_id});`;
         }
         return this.connection.query(queryString);
+    };
+    
+    updateRole(id,role_id) {
+        const queryString = `update employees set role_id = ${role_id} where id = ${id};`;
+        return this.connection.query(queryString);
     }
 };
 
