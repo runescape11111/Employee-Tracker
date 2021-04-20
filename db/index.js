@@ -77,7 +77,58 @@ class DB {
     updateRole(id,role_id) {
         const queryString = `update employees set role_id = ${role_id} where id = ${id};`;
         return this.connection.query(queryString);
-    }
+    };
+    
+    updateManager(id,manager_id) {
+        const queryString = `update employees set manager_id = ${manager_id} where id = ${id};`;
+        return this.connection.query(queryString);
+    };
+    
+    getManagers() {
+        const queryString = `select concat(c2.first_name," ",c2.last_name) Manager
+        from employees c1
+        inner join employees c2 on c1.manager_id = c2.id
+        group by Manager;`;
+        return this.connection.query(queryString);
+    };
+    
+    getEmployeeByManager(result) {
+        const queryString = `select concat(c2.first_name," ",c2.last_name) Manager, concat(c1.first_name," ",c1.last_name) Manages
+        from employees c1
+        inner join employees c2 on c1.manager_id = c2.id
+        having Manager = "${result.manager}";`;
+        return this.connection.query(queryString);
+    };
+    
+    delete(table,id) {
+        let queryString;
+        switch(table) {
+            case "department":
+                queryString = `delete from departments where dept_id = ${id}`;
+                break;
+
+            case "role":
+                queryString = `delete from roles where role_id = ${id}`;
+                break;
+                
+            case "employee":
+                queryString = `delete from employees where id = ${id}`;
+                break;
+                
+            default:
+                console.log("error");
+                break;
+        };
+        return this.connection.query(queryString);
+    };
+    
+    viewBudget(id) {
+        const queryString = `select sum(case when d.dept_id = ${id} then salary else 0 end) budget
+        from departments d
+        inner join roles r on d.dept_id = r.dept_id
+        inner join employees e on r.role_id = e.role_id;`;
+        return this.connection.query(queryString);
+    };
 };
 
 module.exports = DB;
