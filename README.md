@@ -7,6 +7,7 @@
 - [Contribution Guidelines](#Contribution-Guidelines)
 - [Test Instructions](#Test-Instructions)
 - [Video Link](#Video-Link)
+- [GitHub Page](#GitHub-Page)
 - [Questions](#Questions)
 ## Description
 This is an employee tracker, a command line app to manage the list of employees, roles and departments, and make changes to them. 
@@ -37,6 +38,8 @@ N/A
 ```
 ## Video Link
 https://drive.google.com/file/d/1NdKNVh5KLF2_WcKPww5EwBhaziWGgfp_/view?usp=sharing
+## GitHub Page
+https://github.com/runescape11111/Employee-Tracker
 ## Questions
 GitHub profile: github.com/runescape11111/
 
